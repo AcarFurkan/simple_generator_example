@@ -1,0 +1,17 @@
+targets:
+  $default:
+    builders:
+      generators|annotations:
+        enabled: true
+
+builders:
+  generators:
+    target: ":generator"
+    import: "package:generator/generator.dart"
+    builder_factories: ["generateSimpleGenClass"] #Builder name(BuilderOptions)
+    build_extensions: { ".dart": [".g.dart"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
+
+
